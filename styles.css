@@ -1,0 +1,147 @@
+/* General reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-image: url('Web.png'); /* Add your image URL here */
+    background-size: cover; /* Make the image cover the whole background */
+    background-position: center; /* Center the background image */
+    background-attachment: fixed; /* Make the background image stay in place when scrolling */
+    color: #333;
+    padding: 20px;
+    min-height: 100vh; /* Ensure the body takes at least full viewport height */
+    display: flex;
+    flex-direction: column; /* Allow footer to stick at the bottom */
+}
+
+/* Styling for the header panel */
+.header-panel {
+    background: linear-gradient(135deg,rgba(48, 119, 16, 0.54),rgba(196, 119, 16, 0.54)); /* Gradient background with transparency */
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.header-panel .logo h1 {
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* Styling for the navigation menu */
+.navbar ul {
+    list-style-type: none;
+    display: flex;
+    gap: 30px; /* Space between menu items */
+}
+
+.navbar ul li {
+    font-size: 18px;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.navbar ul li a:hover {
+    color: #ffeb3b; /* Yellow color on hover */
+    transform: scale(1.1); /* Slight scaling on hover */
+}
+
+/* Main content styling */
+main {
+    padding: 0 20px;
+    margin-top: 40px; /* Space between header and content */
+    flex: 1; /* Allow main content to grow and push footer down */
+}
+
+/* Styling for the information section */
+.info-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.info-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Hover effect for card */
+}
+
+.info-card h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.info-label {
+    display: block;
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+    margin-top: 10px;
+    font-weight: 400;
+}
+/* Footer styling */
+.footer {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    text-align: center;
+    padding: 20px 20px;
+    font-size: 14px;
+    margin-top: 30px;
+}
+
+/* Social Media Icons */
+.social-media {
+    margin-top: 20px;
+}
+
+.social-icon {
+    color: white;
+    font-size: 24px;
+    margin: 0 10px;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-icon:hover {
+    color: #ffeb3b; /* Yellow hover effect */
+    transform: scale(1.2);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .footer {
+        text-align: left;
+    }
+
+    .social-media {
+        display: flex;
+        justify-content: flex-start;
+        gap: 15px;
+        margin-top: 15px;
+    }
+
+    .social-icon {
+        font-size: 20px;
+    }
+}

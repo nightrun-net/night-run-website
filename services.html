@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Night Run Support Page</title>
+    <link rel="stylesheet" href="service.css"> <!-- Link to the same external CSS file -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery for AJAX -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header-panel">
+        <div class="logo">
+            <h1>NIGHT RUN</h1>
+        </div>
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Support</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="service-section">
+            <h2 class="section-title">Our Support</h2>
+            
+            <!-- Service Cards -->
+            <div class="service-card">
+                <h3>Account</h3>
+                <p></p>
+            </div>
+
+            <div class="service-card">
+                <h3>Technical </h3>
+                <p></p>
+            </div>
+
+            <div class="service-card">
+                <h3>General</h3>
+                <p></p>
+            </div>
+        </section>
+
+        <!-- Dropdown for reporting issues -->
+        <section class="issue-report-section">
+            <h3>Report an Issue</h3>
+            <form id="serviceForm" method="POST">
+                <!-- Dropdown for issue selection -->
+                <label for="issue">Select Issue</label>
+                <select id="issue" name="issue" required>
+                    <option value="">Select an issue</option>
+                    <option value="Technical">Technical Issue</option>
+                    <option value="Account">Account Issue</option>
+                    <option value="General">General Inquiry</option>
+                </select>
+
+                <!-- Textarea for additional details -->
+                <label for="details">Additional Details</label>
+                <textarea id="details" name="details" rows="5" placeholder="Provide more details..." required></textarea>
+
+                <!-- Submit Button -->
+                <button type="submit">Submit Issue</button>
+                <div id="responseMessage"></div> <!-- Success/Failure message -->
+            </form>
+        </section>
+    </main>
+
+    <!-- Footer with copyright -->
+    <footer class="footer">
+        <p>&copy; 2025 Night Run. All Rights Reserved.</p>
+        <div class="social-media">
+            <div class="social-media">
+                <a href="https://youtube.com/@NightRun-99" target="_blank" class="social-icon"><i class="fab fa-youtube"></i></a>
+                <a href="https://tiktok.com/@nightrun99" target="_blank" class="social-icon"><i class="fab fa-tiktok"></i></a> <!-- TikTok Link -->
+                <a href="https://www.snapchat.com/add/nightrun99" target="_blank" class="social-icon"><i class="fab fa-snapchat"></i></a>
+            </div>
+        </div>
+    </footer>
+    <script>
+        $(document).ready(function() {
+            $('#serviceForm').submit(function(e) {
+                e.preventDefault(); // Prevent the default form submission
+    
+                var formData = $(this).serialize(); // Serialize the form data
+    
+                // Clear previous response message
+                $('#responseMessage').html('');
+    
+                $.ajax({
+                    url: 'submit_service.php', // PHP script to handle the form submission
+                    type: 'POST',
+                    data: formData,
+                    success: function(response) {
+                        // Display the appropriate message based on the response
+                        if (response === 'success') {
+                            $('#responseMessage').html('<p style="color: green;">Your issue has been submitted successfully. We will get back to you soon!</p>');
+                        } else {
+                            $('#responseMessage').html('<p style="color: red;">There was an error, please try again later.</p>');
+                        }
+    
+                        // Fade out the message after 3 seconds
+                        setTimeout(function() {
+                            $('#responseMessage').fadeOut(500);
+                        }, 3000); // Delay of 3 seconds
+    
+                        // Reset the form
+                        $('#serviceForm')[0].reset();
+                    },
+                    error: function() {
+                        $('#responseMessage').html('<p style="color: red;">Something went wrong. Please try again later.</p>');
+                        setTimeout(function() {
+                            $('#responseMessage').fadeOut(500);
+                        }, 3000); // Delay of 3 seconds
+                    }
+                });
+            });
+        });
+    </script>
+    
+</body>
+</html>
